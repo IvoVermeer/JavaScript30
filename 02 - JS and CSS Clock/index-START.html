@@ -62,12 +62,56 @@
       background:black;
       position: absolute;
       top:50%;
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition-timing-function: cubic-bezier(0.06, 1.21, 0.85, 1.19);
     }
 
   </style>
 
   <script>
+  // Elements
+  const hand = document.querySelector('.hand');
+  const hoursHand = document.querySelector('.hour-hand');
+  const minutesHand = document.querySelector('.min-hand');
+  const secondsHand = document.querySelector('.second-hand');
 
+  // function to update the hands
+  function setTime() {
+    const currentDate = new Date();
+    var hours = currentDate.getHours();
+    var minutes = currentDate.getMinutes();
+    var seconds = currentDate.getSeconds();
+
+    // convert the hours/minutes/seconds to degrees
+    hours = ((hours / 12) * 360) + 90;
+    minutes = ((minutes / 60) * 360) + 90;
+    seconds = ((seconds / 60) * 360) + 90;
+
+    // set the transition duration
+    hoursHand.style.transition = '0.8s';
+    minutesHand.style.transition = '0.8s';
+    secondsHand.style.transition = '0.8s';
+
+    // temporarily remove transition from elements
+    // hours
+    /*if (hours === 12 || hours === 24) {
+      hourHand.style.  
+    }*/
+    // minutes
+    // seconds
+    if (seconds === 90 ) {
+      secondsHand.style.transition = '';
+    }
+
+
+    // Update the style
+    hoursHand.style.transform = `rotate(${hours}deg)`;
+    minutesHand.style.transform = `rotate(${minutes}deg)`;
+    secondsHand.style.transform = `rotate(${seconds}deg)`;
+  }
+
+  setInterval(setTime, 1000);
 
   </script>
 </body>
